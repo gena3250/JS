@@ -1,0 +1,17 @@
+let mailAddress=["gena@mail.ru","mail-4@yandex.ru","mail-4gena@yandex.ru","gena3250@mail.ru","gena3250@yahoo.com","mail-41@yandex.ru"];
+let blackAddress=["gena@mail.com","mail-4@yandex.ru","gena3250@mail.ru"];
+function testAddres(a,b){
+  let whiteAddress=[];
+for(let mailID of mailAddress){
+  
+  for(let blackID of blackAddress){ 
+  if(mailID==blackID){
+   whiteAddress.push(blackID);
+  }
+  }
+}
+  return whiteAddress;
+}
+console.log(testAddres(mailAddress,blackAddress));
+console.log(testAddres());
+console.log(testAddres(mailAddress,blackAddress))

@@ -1,0 +1,22 @@
+let sum=parseInt(prompt('Сумма'));
+let quantity=parseInt(prompt('Количество'));
+let promo="СКИДКА15";
+
+function result(){
+  let salePersent=0;
+  if(quantity>=10){salePersent+=(sum/100*5);}
+  if(sum>50000){salePersent+=(sum-50000)/100*20;}
+  if(sum>=20000 && promo=="СКИДКА15"){salePersent+=sum/100*15;}
+  if(promo=="ДАРИМ300"){salePersent+=300;}
+  console.log("Ваша скидка,составляет:"+salePersent+"рублей")
+  sum-=salePersent;
+  if(sum<0){
+    return 0;
+  }
+  else{
+    return sum;
+  }
+  
+}
+
+console.log(result(sum,quantity,promo))

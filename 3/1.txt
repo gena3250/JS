@@ -1,0 +1,7 @@
+let pass=prompt('Введите пароль:');
+pass.includes("_");
+if(pass.length>4 && pass.includes("_","-")){
+  alert("Верно");
+}else{
+  alert("Не верно");
+}

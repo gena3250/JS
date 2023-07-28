@@ -1,0 +1,9 @@
+let name=prompt('Введите Имя:','');
+let fname=prompt('Введите Фамилию:','');
+let onename=name[0].toUpperCase();
+let onefname=fname[0].toUpperCase();
+let twoname=name.substr(1).toLowerCase();
+let twofname=fname.substr(1).toLowerCase();
+name=onename+twoname;
+fname=onefname+twofname
+console.log("Здравствуйте:"+name+"_"+fname);

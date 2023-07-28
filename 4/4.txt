@@ -1,0 +1,31 @@
+let day=[];
+let week=["Понедельник","Вторник","Среда","Четверг","Пятница","Суббота","Воскресенье"];
+let month="Январь";
+for(let i=0;i<31;i++){
+    day.push(i+1);
+    if(day[i]%7==1){
+  console.log(day[i]+"_"+month+"_"+week[1]);  
+    }
+    else if(day[i]%7==2){
+  console.log(day[i]+"_"+month+"_"+week[2]);  
+    }
+  else if(day[i]%7==3){
+  console.log(day[i]+"_"+month+"_"+week[3]);  
+    }
+  else if(day[i]%7==4){
+  console.log(day[i]+"_"+month+"_"+week[4]);  
+    }
+  else if(day[i]%7==5){
+  console.log(day[i]+"_"+month+"_"+week[5]);  
+    }
+    else if(day[i]%7==6){
+  console.log(day[i]+"_"+month+"_"+week[6]);  
+    }
+  else if(day[i]%7==0){
+  console.log(day[i]+"_"+month+"_"+week[0]);  
+    }
+    else{
+      console.log("Хрень");
+    
+  }
+}
