@@ -1,0 +1,9 @@
+.io{
+	width: 150px;
+	text-align: center;
+	padding: 20px 0;
+	margin:15px 15px;
+	border: 5px solid black;
+	cursor: pointer;
+	float: left;	
+}
