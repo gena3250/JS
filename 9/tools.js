@@ -2,8 +2,10 @@
 
 	document.addEventListener('DOMContentLoaded', function () {
 		function cardNew(quan) {
-			let cardsCount = quan/2;
+			/* let card; */
+			let cardsCount = quan / 2;
 			let cardNumberArray = [];
+			let cardNumberArray1 = [];
 
 			for (let i = 1; i <= cardsCount; i++){
 				cardNumberArray.push(i, i);
@@ -24,15 +26,20 @@
 			
 
 			for (let i = 0; i < quan;i++){
-			let card = document.createElement('div');
+			let card= document.createElement('div');
 			card.classList.add('io');
 			card.textContent = cardNumberArray[i];
-			ol.after(card);
+				ol.after(card);
+				console.log(card);
+			card.addEventListener('click', function (event) {
+				card.classList.add('loh');
+				cardNumberArray1.push(card.textContent);
+				console.log(cardNumberArray1);
+				})
 			}
-			/* return card; */
 		}
 		
 			cardNew(8);
-		
+			
 	});
 })();
