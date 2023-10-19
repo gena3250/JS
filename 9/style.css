@@ -1,13 +1,55 @@
-.io{
+.card{
 	width: 150px;
 	text-align: center;
-	padding: 20px 0;
+	padding: 80px 0;
 	margin:15px 15px;
-	border: 5px solid black;
+	border: 5px solid rgba(204, 132, 38, 0.959);
+	border-radius: 10px;
+	background-color:rgb(247, 170, 4);
+	z-index:0;
 	cursor: pointer;
-	float: left;	
+	float: left;
+	color: rgb(247, 170, 4);	
+	font-size: 24px;
+	transition: 0.3ms all;
+
 }
+
+.card:active{
+	transform: scale(0.98); 
+	/* Scaling button to 0.98 to its original size */ 
+	box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); 
+	/* Lowering the shadow */ 
+}
+
+.card:hover{
+	transform: scale(0.98); 
+	box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); 
+}
+
+
 .loh{
-	color:brown;
-	border-color: blue;
+	background-color: rgb(185, 60, 11);
+	color: black;
+}
+
+
+
+
+.success{
+	background-color: aqua;
+	cursor: default;
+	/* transition: none; */
+}
+
+.success:active{
+	transform: none; 
+	/* Scaling button to 0.98 to its original size */ 
+	box-shadow: none; 
+	/* Lowering the shadow */ 
+}
+
+.success:hover{
+	transform: none; 
+	box-shadow: none; 
 }

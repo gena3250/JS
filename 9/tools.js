@@ -1,45 +1,76 @@
-(function () {
 
-	document.addEventListener('DOMContentLoaded', function () {
-		function cardNew(quan) {
-			/* let card; */
-			let cardsCount = quan / 2;
+			let cardsCount =  Number(prompt('Введите кол-во ячеек'))/2;
 			let cardNumberArray = [];
-			let cardNumberArray1 = [];
+			let firstCard = null;
+			let secondCard = null;
+
+
+
 
 			for (let i = 1; i <= cardsCount; i++){
-				cardNumberArray.push(i, i);
-				
+				cardNumberArray.push(i, i);				
 			}
+			
 
-
-
-			for (let i = 0; i < cardNumberArray.length; i++){
+			/* Перемешивания массива чисел */
+			 for (let i = 0; i < cardNumberArray.length; i++){
 				let randomIndex = Math.floor(Math.random() * cardNumberArray.length);
 				let temp = cardNumberArray[i];
 				cardNumberArray[i] = cardNumberArray[randomIndex];
 				cardNumberArray[randomIndex] = temp;
 			}
 
-			console.log(cardNumberArray);
-
+			/* console.log(cardNumberArray); */
 			
+			//Создание карточки
+			for (let cardNumber of cardNumberArray){
+			let card = document.createElement('div');
+			card.textContent=cardNumber;	
+			card.classList.add('card');	
 
-			for (let i = 0; i < quan;i++){
-			let card= document.createElement('div');
-			card.classList.add('io');
-			card.textContent = cardNumberArray[i];
-				ol.after(card);
-				console.log(card);
-			card.addEventListener('click', function (event) {
+				card.addEventListener('click', function () {
+
+					if (card.classList.contains("loh") || card.classList.contains("success")) {
+						return
+					}
+
+
+
+					if (firstCard !== null && secondCard !== null) {
+						firstCard.classList.remove("loh");
+						secondCard.classList.remove("loh");
+						firstCard = null;
+						secondCard = null;
+				}
 				card.classList.add('loh');
-				cardNumberArray1.push(card.textContent);
-				console.log(cardNumberArray1);
-				})
-			}
-		}
+				console.log("Номер карты",card)
+				if (firstCard===null) {
+					firstCard = card;
+				} else {
+					secondCard = card;
+				}
+
+				if (firstCard !== null && secondCard !== null) {
+					let firstCardNumber = firstCard.textContent;
+					let secondCardNumber = secondCard.textContent;
+					
+					if (firstCardNumber === secondCardNumber) {
+						firstCard.classList.add("success");
+						secondCard.classList.add("success");
+
+					}
+
+				}
+					/* let tagsName = ; */
+					
 		
-			cardNew(8);
-			
-	});
-})();
+			if (cardNumberArray.length===document.querySelectorAll(".success").length) {
+				setTimeout(function(){alert("Игра закончилась")}, 400)
+				
+					}
+					
+
+
+			})
+			ol.after(card);
+			}
