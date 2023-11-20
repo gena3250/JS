@@ -1,5 +1,9 @@
 
-			let cardsCount =  Number(prompt('Введите кол-во ячеек'))/2;
+let game=document.getElementById("game")			
+			
+
+function startGame(game,cardsCount){
+
 			let cardNumberArray = [];
 			let firstCard = null;
 			let secondCard = null;
@@ -64,13 +68,27 @@
 					/* let tagsName = ; */
 					
 		
-			if (cardNumberArray.length===document.querySelectorAll(".success").length) {
-				setTimeout(function(){alert("Игра закончилась")}, 400)
+					if (cardNumberArray.length === document.querySelectorAll(".success").length) {
+						
+						setTimeout(function () {
+							game.innerHTML = "";
+							alert("Игра закончилась")
+							
+							let cardsCount = Number(prompt('Введите кол-во ячеек'));
+							startGame(game, cardsCount)
+						}, 400)
 				
 					}
 					
 
 
 			})
-			ol.after(card);
+			game.after(card);
 			}
+		}
+
+
+
+
+ let cardsCount = Number(prompt('Введите кол-во ячеек')) / 2;
+ startGame(game,cardsCount)
