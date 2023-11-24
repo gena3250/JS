@@ -6,13 +6,6 @@ let student = [
 	{ name: "Алексей", famel: "Алушкин", surname: "Владимирович", date: "07.11.1990", year: 2012, faculty: "Информационные системы и техноогии" }	
 ]
 
-const students = student.slice();
-for (let userStudent of students) {
-	userStudent.fio = userStudent.famel + " " + userStudent.name + " " + userStudent.surname;
-}
-
-
-
 
 //Таблица
 let stud = document.getElementById('stud')
@@ -43,18 +36,54 @@ tableTr.append(tableYearTh);
 thead.append(tableTr); 
 
 
+let students = student.slice();
+
+
+tableFioTh.addEventListener('click', function () {
+	
+	students.sort((a, b) => a.name > b.name ? 1 : -1);
+	start(students);
+})
+
+function start(students){
+for (let i = 0; i < students.length; i++) {
+	
+	students[i].fio = students[i].famel + " " + students[i].name + " " + students[i].surname;
+	console.log(student[i].fio)
+	let tableTrtD = document.createElement('tr');
+	let tableFioTd = document.createElement('td');
+	let tableFacultyTd = document.createElement('td');
+	let tableDateTd = document.createElement('td');
+	let tableYearTd = document.createElement('td');
+
+	tableFioTd.textContent = students[i].fio;
+	tableFacultyTd.textContent = students[i].faculty;
+	tableDateTd.textContent = students[i].date;
+	tableYearTd.textContent = students[i].year;
+
+	table.append(tbody);
+	tableTrtD.append(tableFioTd);
+	tableTrtD.append(tableFacultyTd);
+	tableTrtD.append(tableDateTd);
+	tableTrtD.append(tableYearTd);
+	tbody.append(tableTrtD);
+
+
+
+	return {
+		tableFioTd,
+		tableFacultyTd,
+		tableDateTd,
+		tableYearTd,
+	};
+
+}
+}
+start(students);
 
 
 
 
 
-/* tableTr.append(tableFioTh);
-tableTr.append(tableFacultyTh);
-tableTr.append(tableDateTh);
-tableTr.append(tableYearTh);
 
-thead.append(tableTr);
-table.append(thead);
-table.append(tbody);
-studId.append(table); */
 
