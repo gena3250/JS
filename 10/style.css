@@ -1,3 +1,19 @@
 th{
 	cursor: pointer;
 }
+
+form{
+	display: flex;
+   flex-direction: column;
+}
+input{
+	margin-bottom: 15px;
+	max-width: 20%;
+	
+}
+
+button{
+ padding: 5px;
+ font-size: 24px;
+ width: 10em;
+}

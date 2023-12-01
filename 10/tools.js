@@ -37,10 +37,30 @@ let student = [
 	 	faculty: "Информационные системы и техноогии" 
 	}
 ]
+//Формы
+let stud = document.getElementById('stud')
+		this.form = document.createElement('form');
+		this.nameInput = document.createElement('input');
+		this.famelInput = document.createElement('input');
+		this.surnameInput = document.createElement('input');
+		this.dateInput=document.createElement('input');
+		this.yearInput=document.createElement('input');
+		this.facultyInput = document.createElement('input');
+		this.buttonInput = document.createElement('button');
+
+
+buttonInput.textContent = "Добавить";
+buttonInput.classList.add('btn', 'btn-primary')
+buttonInput.classList.add('mb-3')
+
+console.log(facultyInput)
+
+
+
 
 
 //Таблица
-let stud = document.getElementById('stud')
+
 let table = document.createElement('table');
 let thead = document.createElement('thead');
 let tbody = document.createElement('tbody');
@@ -56,9 +76,19 @@ tableFioTh.textContent = "ФИО";
 tableFacultyTh.textContent = "Факультет";
 tableDateTh.textContent = "ДР и возраст";
 tableYearTh.textContent = "Годы обучения";
-console.log(stud);
 
-table.classList.add("table","table-dark")
+
+
+
+table.classList.add("table", "table-dark")
+stud.append(form);
+form.append(nameInput);
+form.append(famelInput);
+form.append(surnameInput);
+form.append(dateInput);
+form.append(yearInput);
+form.append(facultyInput);
+form.append(buttonInput);
 stud.append(table);
 table.append(thead);
 tableTr.append(tableFioTh);
