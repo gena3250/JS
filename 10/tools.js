@@ -3,7 +3,7 @@ let student = [
 		name: "Геннадий",
 		famel: "Дмитриев",
 		surname: "Олегович",
-		date: new Date("1985-11-07"),
+		date: "01.02.2003"/* new Date("1985-11-07") */,
 		year: 2007,
 		faculty: "Информационные системы и техноогии"
 	},
@@ -11,28 +11,28 @@ let student = [
 		name: "Александр",
 		famel: "Александров",
 		surname: "Александрович",
-		date: new Date("1980-11-07"),
+		date: "01.02.2003"/* new Date("1980-11-07") */,
 		year: 2010,
 		faculty: "Информационные системы и техноогии"
 	},
 	{ 	name: "Петр",
 	 	famel: "Петров",
 	 	surname: "Алексеевич",
-	 	date: new Date("1996-01-27"),
+	 	date: "01.02.2003"/* new Date("1996-01-27") */,
 	 	year: 2013,
 	 	faculty: "Информационные системы и техноогии" 
 	},
 	{ 	name: "Василий",
 	 	famel: "Васильев",
 	 	surname: "Хренович",
-	 	date: new Date("2001/02/17"),
+	 	date: "01.02.2003"/* new Date("2001/02/17") */,
 	 	year: 2011,
 	 	faculty: "Информационные системы и техноогии" 
 	},
 	{ 	name: "Алексей",
 	 	famel: "Алушкин",
 	 	surname: "Владимирович",
-	 	date: new Date(1992,11,17),
+	 	date: "01.02.2003"/* new Date("2002/03/07") */,
 	 	year: 2012,
 	 	faculty: "Информационные системы и техноогии" 
 	}
@@ -48,12 +48,20 @@ let stud = document.getElementById('stud')
 		this.facultyInput = document.createElement('input');
 		this.buttonInput = document.createElement('button');
 
+		nameInput.placeholder ="Введите имя:";
+		famelInput.placeholder ="Введите фамилию" ;
+		surnameInput.placeholder = "Введите отчество" ;
+		dateInput.type = "date";
+dateInput.value = "1990-01-01";
+		yearInput.placeholder="Год обучения";
+		facultyInput.placeholder = "Факультет";
+		
+		buttonInput.textContent = "Добавить";
+		buttonInput.classList.add('btn', 'btn-primary')
+		buttonInput.classList.add('mb-3')
 
-buttonInput.textContent = "Добавить";
-buttonInput.classList.add('btn', 'btn-primary')
-buttonInput.classList.add('mb-3')
 
-console.log(facultyInput)
+
 
 
 
@@ -98,13 +106,19 @@ tableTr.append(tableYearTh);
 thead.append(tableTr); 
 
 
+
+
+
+function render() {
+	tbody.innerHTML = '';
 let students = student.slice();
-
-
 
 for (let oneUser of students) {
 	oneUser.fio = oneUser.famel + " " + oneUser.name + " " + oneUser.surname;
-	oneUser.birthYear = 2023 - oneUser.date.getFullYear()
+	oneUser.birthYear = 2023 - Number(oneUser.date.slice(-4));
+	console.log(oneUser.birthYear)
+	console.log(typeof oneUser.date)
+	
 }
 
 
@@ -118,7 +132,7 @@ for (let oneUser of students) {
 
 	tableFioTd.textContent = oneUser.fio;
 	tableFacultyTd.textContent = oneUser.faculty;
-	tableDateTd.textContent = oneUser.date.toISOString().slice(0, 10) + " Возраст:"+ oneUser.birthYear;
+	tableDateTd.textContent = oneUser.date + " Возраст:"+ oneUser.birthYear;
 	tableYearTd.textContent = oneUser.year;
 
 	table.append(tbody);
@@ -129,6 +143,21 @@ for (let oneUser of students) {
 	tbody.append(tableTrtD);
 }
 
+};
+render();
 
-
-
+buttonInput.addEventListener("click", function (e) {
+	e.preventDefault();
+	let dateNorm = dateInput.value.split("-").reverse().join(".");
+	student.push({
+		name: nameInput.value,
+		famel: famelInput.value,
+		surname: surnameInput.value,
+		date: dateNorm,
+		year: yearInput.value,
+		faculty: famelInput.value
+	});
+	
+	console.log(dateInput.value)
+	render()
+})
