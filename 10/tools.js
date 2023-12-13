@@ -3,7 +3,7 @@ let student = [
 		name: "Геннадий",
 		famel: "Дмитриев",
 		surname: "Олегович",
-		date: "01.02.2003"/* new Date("1985-11-07") */,
+		date: "01.02.2003",
 		year: 2007,
 		faculty: "Информационные системы и техноогии"
 	},
@@ -11,28 +11,28 @@ let student = [
 		name: "Александр",
 		famel: "Александров",
 		surname: "Александрович",
-		date: "01.02.2003"/* new Date("1980-11-07") */,
+		date: "01.02.2003",
 		year: 2010,
 		faculty: "Информационные системы и техноогии"
 	},
 	{ 	name: "Петр",
 	 	famel: "Петров",
 	 	surname: "Алексеевич",
-	 	date: "01.02.2003"/* new Date("1996-01-27") */,
+	 	date: "01.02.2003",
 	 	year: 2013,
 	 	faculty: "Информационные системы и техноогии" 
 	},
 	{ 	name: "Василий",
 	 	famel: "Васильев",
 	 	surname: "Хренович",
-	 	date: "01.02.2003"/* new Date("2001/02/17") */,
+	 	date: "01.02.2003",
 	 	year: 2011,
 	 	faculty: "Информационные системы и техноогии" 
 	},
 	{ 	name: "Алексей",
 	 	famel: "Алушкин",
 	 	surname: "Владимирович",
-	 	date: "01.02.2003"/* new Date("2002/03/07") */,
+	 	date: "01.02.2003",
 	 	year: 2012,
 	 	faculty: "Информационные системы и техноогии" 
 	}
@@ -141,6 +141,12 @@ for (let oneUser of students) {
 	tableTrtD.append(tableDateTd);
 	tableTrtD.append(tableYearTd);
 	tbody.append(tableTrtD);
+
+
+	.addEventListener('click', function () {
+		
+		alert("Ghbdtn")
+	})
 }
 
 };
@@ -161,3 +167,5 @@ buttonInput.addEventListener("click", function (e) {
 	console.log(dateInput.value)
 	render()
 })
+
+
