@@ -20,7 +20,7 @@ let student = [
 	 	surname: "Алексеевич",
 	 	date: "01.02.2003",
 	 	year: 2013,
-	 	faculty: "Информационные системы и техноогии" 
+	 	faculty: "Анформационные системы и техноогии" 
 	},
 	{ 	name: "Василий",
 	 	famel: "Васильев",
@@ -60,13 +60,6 @@ dateInput.value = "1990-01-01";
 		buttonInput.classList.add('btn', 'btn-primary')
 		buttonInput.classList.add('mb-3')
 
-
-
-
-
-
-
-
 //Таблица
 
 let table = document.createElement('table');
@@ -81,10 +74,13 @@ let tableYearTh = document.createElement('th');
 
 
 tableFioTh.textContent = "ФИО";
+tableFioTh.setAttribute('data-type','string');
 tableFacultyTh.textContent = "Факультет";
+tableFacultyTh.setAttribute('data-type','string');
 tableDateTh.textContent = "ДР и возраст";
+tableDateTh.setAttribute('data-type','number');
 tableYearTh.textContent = "Годы обучения";
-
+tableYearTh.setAttribute('data-type','number');
 
 
 
@@ -117,10 +113,8 @@ for (let oneUser of students) {
 	oneUser.fio = oneUser.famel + " " + oneUser.name + " " + oneUser.surname;
 	oneUser.birthYear = 2023 - Number(oneUser.date.slice(-4));
 	console.log(oneUser.birthYear)
-	console.log(typeof oneUser.date)
-	
+	console.log(typeof oneUser.date)	
 }
-
 
 
 for (let oneUser of students) {
@@ -141,15 +135,9 @@ for (let oneUser of students) {
 	tableTrtD.append(tableDateTd);
 	tableTrtD.append(tableYearTd);
 	tbody.append(tableTrtD);
-
-
-	.addEventListener('click', function () {
-		
-		alert("Ghbdtn")
-	})
 }
-
 };
+
 render();
 
 buttonInput.addEventListener("click", function (e) {
@@ -163,9 +151,36 @@ buttonInput.addEventListener("click", function (e) {
 		year: yearInput.value,
 		faculty: famelInput.value
 	});
-	
-	console.log(dateInput.value)
 	render()
 })
+
+
+table.addEventListener('click', function(event) {
+	if (event.target.tagName != 'TH') return
+	console.log(event.target);
+	let th = event.target;
+
+	sortTable(th.cellIndex, th.dataset.type);
+});
+ 
+function sortTable(colNum, type) {
+	let rowsArrey = Array.from(tbody.rows)
+/* 	console.log(rowsArrey) */
+	let compare;
+	switch (type) {
+		case 'number':
+			compare = function (rowA, rowB) {
+				return rowA.cells[colNum].innerHTML - rowB.cells[colNum].innerHTML
+			}
+			break;
+		case 'string':
+			compare = function (rowA, rowB) {
+				return rowA.cells[colNum].innerHTML > rowB.cells[colNum].innerHTML ? 1 : -1
+			}
+			break;
+	}
+	rowsArrey.sort(compare)
+	tbody.append(...rowsArrey)
+}
 
 
