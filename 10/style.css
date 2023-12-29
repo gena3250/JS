@@ -17,3 +17,10 @@ button{
  font-size: 24px;
  width: 10em;
 }
+
+.formFilterClass{
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	
+}
