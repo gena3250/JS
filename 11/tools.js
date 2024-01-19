@@ -1,4 +1,5 @@
 let colIndex = -1;
+
 let student = [
 	{
 		name: "Геннадий",
@@ -38,6 +39,8 @@ let student = [
 	 	faculty: "Информационные системы и техноогии" 
 	}
 ]
+
+let massFilter = [];
 //Формы
 let stud = document.getElementById('stud')
 		this.form = document.createElement('form');
@@ -148,7 +151,57 @@ thead.append(tableTr);
 
 //Функция вывода фильтра
 
-function filter(arr,prop,value) {
+
+
+
+/* console.log(filter(student,'name','Генн')) */
+
+/* buttonFilter.addEventListener('click', function (e) {
+	e.preventDefault();
+	tbody.innerHTML = '';
+	let students = [];
+
+for (let user of student) {
+	if(user.name.includes(fioFilter.value)==true)students.push(user)
+	}
+	
+	
+	
+	
+	
+	
+	for (let oneUser of students) {
+		oneUser.fio = oneUser.famel + " " + oneUser.name + " " + oneUser.surname;
+		oneUser.birthYear = 2023 - Number(oneUser.date.slice(-4));//Сколько студенту лет	
+	}
+	
+	
+	for (let oneUser of students) {
+		let tableTrtD = document.createElement('tr');
+		let tableFioTd = document.createElement('td');
+		let tableFacultyTd = document.createElement('td');
+		let tableDateTd = document.createElement('td');
+		let tableYearTd = document.createElement('td');
+	
+		tableFioTd.textContent = oneUser.fio;
+		tableFacultyTd.textContent = oneUser.faculty;
+		tableDateTd.textContent = oneUser.date + " Возраст:"+ oneUser.birthYear;
+		tableYearTd.textContent = oneUser.year;
+	
+		table.append(tbody);
+		tableTrtD.append(tableFioTd);
+		tableTrtD.append(tableFacultyTd);
+		tableTrtD.append(tableDateTd);
+		tableTrtD.append(tableYearTd);
+		tbody.append(tableTrtD);
+	}
+console.log(newList); 
+})
+ */
+
+
+
+/* function filter(arr,prop,value) {
 	let students = [];
 	let copy=[...arr]
 	for (let item of copy) {
@@ -158,11 +211,11 @@ function filter(arr,prop,value) {
 	/* oneUser.birthYear = 2023 - Number(oneUser.date.slice(-4));
 		if (oneUser.birthYear == 20) students.push(oneUser)
 		console.log(students) */	
-}
+/* }
 let arr1 = filter(student, 'name', 'Геннадий');
 
 console.log(arr1)
-
+ */ 
 /* studFilter(); */
 
 
@@ -172,25 +225,39 @@ console.log(arr1)
 
 
 
-
-//Функция вывода таблицы
-function render() {
-tbody.innerHTML = '';
-let students = student.slice();
-
-for (let oneUser of students) {
-	oneUser.fio = oneUser.famel + " " + oneUser.name + " " + oneUser.surname;
-	oneUser.birthYear = 2023 - Number(oneUser.date.slice(-4));//Сколько студенту лет	
+function filter(arr,prop,value) {
+	let result = [];
+	let copy = [...arr]
+	for (let item of copy) {
+		if(String(item[prop]).includes(value)==true) result.push(item)
+	}
+	return result
 }
 
 
+
+//Функция вывода таблицы
+function render(arr) {
+tbody.innerHTML = '';
+let students = arr.slice();
+
 for (let oneUser of students) {
+		oneUser.fio = oneUser.famel + " " + oneUser.name + " " + oneUser.surname;
+		oneUser.birthYear = 2023 - Number(oneUser.date.slice(-4));//Сколько студенту лет
+		massFilter.push(oneUser);
+}
+
+let newMass=[...massFilter]
+	if(fioFilter.value !=='') newMass=filter(newMass,'fio',fioFilter.value)
+
+
+	for (let oneUser of newMass) {
 	let tableTrtD = document.createElement('tr');
 	let tableFioTd = document.createElement('td');
 	let tableFacultyTd = document.createElement('td');
 	let tableDateTd = document.createElement('td');
 	let tableYearTd = document.createElement('td');
-
+	
 	tableFioTd.textContent = oneUser.fio;
 	tableFacultyTd.textContent = oneUser.faculty;
 	tableDateTd.textContent = oneUser.date + " Возраст:"+ oneUser.birthYear;
@@ -202,10 +269,19 @@ for (let oneUser of students) {
 	tableTrtD.append(tableDateTd);
 	tableTrtD.append(tableYearTd);
 	tbody.append(tableTrtD);
-}
+	
+	}
+	
 };
 
-render();
+render(student);
+
+
+buttonFilter.addEventListener('click', function (e) {
+	tbody.innerHTML = '';
+	e.preventDefault();
+	render(student);
+})
 
 //Добавление в таблицу
 
@@ -220,21 +296,21 @@ buttonInput.addEventListener("click", function (event) {
 		year: yearInput.value,
 		faculty: famelInput.value
 	});
-	render()
+	render(student)
 })
 
 //Сортировка таблицы по столбцам ,доделать в обратную сторону!!!
-table.addEventListener('click', function(event) {
+/* table.addEventListener('click', function(event) {
 	if (event.target.tagName != 'TH') return
 	let th = event.target;
 	
 	sortTable(th.cellIndex, th.dataset.type, colIndex == th.cellIndex);
 	colIndex = (colIndex == th.cellIndex) ? -1 : th.cellIndex;
 });
- 
+  */
 
 //Функция сортировки таблицы
-function sortTable(colNum, type,isSorted) {
+/* function sortTable(colNum, type,isSorted) {
 	let rowsArrey = Array.from(tbody.rows)
 
 	let compare;
@@ -256,5 +332,5 @@ function sortTable(colNum, type,isSorted) {
 
 	tbody.append(...rowsArrey)
 }
-
+ */
 
