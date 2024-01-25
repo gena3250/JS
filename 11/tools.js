@@ -40,7 +40,7 @@ let student = [
 	}
 ]
 
-let massFilter = [];
+
 //Формы
 let stud = document.getElementById('stud')
 		this.form = document.createElement('form');
@@ -218,13 +218,6 @@ console.log(arr1)
  */ 
 /* studFilter(); */
 
-
-
-
-
-
-
-
 function filter(arr,prop,value) {
 	let result = [];
 	let copy = [...arr]
@@ -238,9 +231,8 @@ function filter(arr,prop,value) {
 
 //Функция вывода таблицы
 function render(arr) {
-tbody.innerHTML = '';
-let students = arr.slice();
-
+	let students = arr.slice();
+	let massFilter = [];
 for (let oneUser of students) {
 		oneUser.fio = oneUser.famel + " " + oneUser.name + " " + oneUser.surname;
 		oneUser.birthYear = 2023 - Number(oneUser.date.slice(-4));//Сколько студенту лет
@@ -248,7 +240,7 @@ for (let oneUser of students) {
 }
 
 let newMass=[...massFilter]
-	if(fioFilter.value !=='') newMass=filter(newMass,'fio',fioFilter.value)
+if(fioFilter.value !=='') newMass=filter(newMass,'fio',fioFilter.value)
 
 
 	for (let oneUser of newMass) {
@@ -269,7 +261,6 @@ let newMass=[...massFilter]
 	tableTrtD.append(tableDateTd);
 	tableTrtD.append(tableYearTd);
 	tbody.append(tableTrtD);
-	
 	}
 	
 };
@@ -278,14 +269,16 @@ render(student);
 
 
 buttonFilter.addEventListener('click', function (e) {
-	tbody.innerHTML = '';
 	e.preventDefault();
+	tbody.innerHTML = ' ';	
 	render(student);
+	
 })
 
 //Добавление в таблицу
 
 buttonInput.addEventListener("click", function (event) {
+	tbody.innerHTML = '';
 	event.preventDefault();
 	let dateNorm = dateInput.value.split("-").reverse().join(".");
 	student.push({
@@ -300,17 +293,17 @@ buttonInput.addEventListener("click", function (event) {
 })
 
 //Сортировка таблицы по столбцам ,доделать в обратную сторону!!!
-/* table.addEventListener('click', function(event) {
+table.addEventListener('click', function(event) {
 	if (event.target.tagName != 'TH') return
 	let th = event.target;
 	
 	sortTable(th.cellIndex, th.dataset.type, colIndex == th.cellIndex);
 	colIndex = (colIndex == th.cellIndex) ? -1 : th.cellIndex;
 });
-  */
+
 
 //Функция сортировки таблицы
-/* function sortTable(colNum, type,isSorted) {
+ function sortTable(colNum, type,isSorted) {
 	let rowsArrey = Array.from(tbody.rows)
 
 	let compare;
@@ -332,5 +325,5 @@ buttonInput.addEventListener("click", function (event) {
 
 	tbody.append(...rowsArrey)
 }
- */
+
 
