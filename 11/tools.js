@@ -53,12 +53,12 @@ let stud = document.getElementById('stud')
 		this.buttonInput = document.createElement('button');
 
 nameInput.placeholder ="Введите имя:";
-famelInput.placeholder ="Введите фамилию" ;
-surnameInput.placeholder = "Введите отчество" ;
+famelInput.placeholder ="Введите фамилию:" ;
+surnameInput.placeholder = "Введите отчество:" ;
 dateInput.type = "date";
 dateInput.value = "1990-01-01";
-yearInput.placeholder="Год обучения";
-facultyInput.placeholder = "Факультет";
+yearInput.placeholder="Год обучения:";
+facultyInput.placeholder = "Факультет:";
 		
 buttonInput.textContent = "Добавить";
 buttonInput.classList.add('btn', 'btn-primary');
@@ -83,15 +83,19 @@ form.append(buttonInput);
 		this.dateFilter = document.createElement('input');
 		this.yearFilter = document.createElement('input');
 		this.buttonFilter = document.createElement('button');
+		this.buttonFilterClear = document.createElement('button');
 	
 formFilter.classList.add('formFilterClass')
 buttonFilter.textContent = "Фильтровать";
 buttonFilter.classList.add('btn', 'btn-primary');
 buttonFilter.classList.add('mb-3');
+buttonFilterClear.textContent = "Очистить";
+buttonFilterClear.classList.add('btn', 'btn-primary');
+buttonFilterClear.classList.add('mb-3');
 		
 fioFilter.placeholder = "ФИО";
 facultyFilter.placeholder = "Факультет";
-dateFilter.placeholder = "ДР";
+dateFilter.placeholder = "Возраст";
 yearFilter.placeholder = "Годы обучения";
 		
 
@@ -101,6 +105,9 @@ yearFilter.placeholder = "Годы обучения";
 		formFilter.append(dateFilter);
 		formFilter.append(yearFilter);
 		formFilter.append(buttonFilter);
+		formFilter.append(buttonFilterClear);
+		
+		
 
 		
 
@@ -151,73 +158,6 @@ thead.append(tableTr);
 
 //Функция вывода фильтра
 
-
-
-
-/* console.log(filter(student,'name','Генн')) */
-
-/* buttonFilter.addEventListener('click', function (e) {
-	e.preventDefault();
-	tbody.innerHTML = '';
-	let students = [];
-
-for (let user of student) {
-	if(user.name.includes(fioFilter.value)==true)students.push(user)
-	}
-	
-	
-	
-	
-	
-	
-	for (let oneUser of students) {
-		oneUser.fio = oneUser.famel + " " + oneUser.name + " " + oneUser.surname;
-		oneUser.birthYear = 2023 - Number(oneUser.date.slice(-4));//Сколько студенту лет	
-	}
-	
-	
-	for (let oneUser of students) {
-		let tableTrtD = document.createElement('tr');
-		let tableFioTd = document.createElement('td');
-		let tableFacultyTd = document.createElement('td');
-		let tableDateTd = document.createElement('td');
-		let tableYearTd = document.createElement('td');
-	
-		tableFioTd.textContent = oneUser.fio;
-		tableFacultyTd.textContent = oneUser.faculty;
-		tableDateTd.textContent = oneUser.date + " Возраст:"+ oneUser.birthYear;
-		tableYearTd.textContent = oneUser.year;
-	
-		table.append(tbody);
-		tableTrtD.append(tableFioTd);
-		tableTrtD.append(tableFacultyTd);
-		tableTrtD.append(tableDateTd);
-		tableTrtD.append(tableYearTd);
-		tbody.append(tableTrtD);
-	}
-console.log(newList); 
-})
- */
-
-
-
-/* function filter(arr,prop,value) {
-	let students = [];
-	let copy=[...arr]
-	for (let item of copy) {
-		if (String(item[prop].includes(value) == true)) students.push(item)
-	}
-		return students
-	/* oneUser.birthYear = 2023 - Number(oneUser.date.slice(-4));
-		if (oneUser.birthYear == 20) students.push(oneUser)
-		console.log(students) */	
-/* }
-let arr1 = filter(student, 'name', 'Геннадий');
-
-console.log(arr1)
- */ 
-/* studFilter(); */
-
 function filter(arr,prop,value) {
 	let result = [];
 	let copy = [...arr]
@@ -240,8 +180,11 @@ for (let oneUser of students) {
 }
 
 let newMass=[...massFilter]
-if(fioFilter.value !=='') newMass=filter(newMass,'fio',fioFilter.value)
-
+	if (facultyFilter.value !== '') newMass = filter(newMass, 'faculty', facultyFilter.value);
+	if (fioFilter.value !== '') newMass = filter(newMass, 'fio', fioFilter.value);
+	if (dateFilter.value !== '') newMass = filter(newMass, 'birthYear', dateFilter.value);
+	if (yearFilter.value !== '') newMass = filter(newMass, 'year', yearFilter.value);
+//Добавить фильтры
 
 	for (let oneUser of newMass) {
 	let tableTrtD = document.createElement('tr');
@@ -268,6 +211,9 @@ if(fioFilter.value !=='') newMass=filter(newMass,'fio',fioFilter.value)
 render(student);
 
 
+
+
+//Кнопка для фильтра
 buttonFilter.addEventListener('click', function (e) {
 	e.preventDefault();
 	tbody.innerHTML = ' ';	
@@ -275,20 +221,37 @@ buttonFilter.addEventListener('click', function (e) {
 	
 })
 
+buttonFilterClear.addEventListener('click', function () {
+	facultyFilter.value == '';
+	fioFilter.value == '';
+	dateFilter.value == '';
+	yearFilter.value == '';
+})
+
 //Добавление в таблицу
 
 buttonInput.addEventListener("click", function (event) {
 	tbody.innerHTML = '';
 	event.preventDefault();
-	let dateNorm = dateInput.value.split("-").reverse().join(".");
+	let nameInputStr = nameInput.value.trim();
+		 famelInputStr = famelInput.value.trim();
+		 surnameInputStr = surnameInput.value.trim();
+		 facultyInputStr =facultyInput.value.trim();
+		 dateNorm = dateInput.value.split("-").reverse().join(".");
 	student.push({
-		name: nameInput.value,
-		famel: famelInput.value,
-		surname: surnameInput.value,
+		name: nameInputStr[0].toUpperCase() + nameInputStr.slice(1),
+		famel: famelInputStr[0].toUpperCase() + famelInputStr.slice(1),
+		surname: surnameInputStr[0].toUpperCase() + surnameInputStr.slice(1),
 		date: dateNorm,
 		year: yearInput.value,
-		faculty: famelInput.value
+		faculty: facultyInputStr[0].toUpperCase() + facultyInputStr.slice(1),
 	});
+	nameInput.value = nameInput.placeholder;
+	famelInput.value = ' ';
+	surnameInput.value = ' ';
+	facultyInput.value = ' ';
+	dateInput.value = ' ';
+	yearInput.value=' '
 	render(student)
 })
 
