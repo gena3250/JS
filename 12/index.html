@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>TODO</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <script defer src="./todo-app.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded',function(){
+			createTodoApp(document.getElementById('todo-app'), 'Мои дела','Я');
+		});
+
+
+
+
+/* fetch('https://gorest.co.in/public/v2/users',{
+    method:'POST',
+    body: JSON.stringify({
+    email:"joshi_jd_smita@weber.example",
+    gender:"female",
+    id:117,
+    name:"DMITRIEV GENNADIY OLEGOVICH",
+    status:"inactive"    
+    
+  }),
+  headers: {
+    Authorization:'Bearer 24f9cd9dada2adbd4d747ca1ec405c72593d745c7430dc813466fd24225b977b',
+    'Content-Type':'application/json'
+  }
+})  */
+
+      /* async function loadTodoItems() {
+        const response = await fetch('https://localhost:3000/api/todos');
+        const data = await response.json();
+        console.log(data);
+      }
+
+      async function createTodoItem() {
+        const response = await fetch('https://localhost:3000/api/todos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: 'Сходить за хлебом',
+            owner: 'Тимофей'
+          })
+        });
+		} */
+
+       /*  const data = await response.json();
+        console.log(data);
+      } */
+
+      /* async function getTodoItem() {
+        const response = await fetch('http://localhost:3000/api/todos/1608029025426');
+        const data = await response.json();
+        console.log(data);
+      }
+
+      async function markTodoAsDone() {
+        const response = await fetch('http://localhost:3000/api/todos/1608029025426', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ done: true })
+        });
+        const data = await response.json();
+        console.log(data);
+      }
+
+      async function deleteTodoItem() {
+        const response = await fetch('http://localhost:3000/api/todos/1608029025426', {
+          method: 'DELETE',
+        });
+        if (response.status === 404)
+          console.log('Не удалось удалить дело, так как его не существует');
+        const data = await response.json();
+        console.log(data);
+      } */
+    </script>
+  </head>
+  <body>
+    <div class="container mb-5">
+			<nav class="nav">
+				<a class="nav-link" href="index.html">Мои дела</a>
+				<a class="nav-link" href="dad.html">Дела папы</a>
+				<a class="nav-link" href="mom.html">Дела мамы</a>
+			</nav>
+		</div>
+	
+	
+	
+	<div id="todo-app" class="container" ></div>
+  </body>
+</html>

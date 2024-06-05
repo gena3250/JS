@@ -57,7 +57,11 @@ famelInput.placeholder ="Введите фамилию:" ;
 surnameInput.placeholder = "Введите отчество:" ;
 dateInput.type = "date";
 dateInput.value = "1990-01-01";
-yearInput.placeholder="Год обучения:";
+yearInput.placeholder = "Год обучения:";
+yearInput.type = "text";
+yearInput.max = "4";
+yearInput.step = "4";
+yearInput.pattern = "-?(\d+|\d+.\d+|.\d+)([eE][-+]?\d+)?";
 facultyInput.placeholder = "Факультет:";
 		
 buttonInput.textContent = "Добавить";
